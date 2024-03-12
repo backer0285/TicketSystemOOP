@@ -42,6 +42,8 @@ do
             {
                 ticket.watching.Add("(no watchers attached to ticket)");
             }
+
+            ticketFile.AddTicket(ticket);
         }
     }
     else if (choice == "2")
