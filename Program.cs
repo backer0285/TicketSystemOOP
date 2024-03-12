@@ -17,5 +17,6 @@ Ticket ticket = new Ticket
     assigned = "John Smith",
     watching = new List<string> { "Drew Kjell", "John Smith", "Bill Jones" }
 };
+Console.WriteLine(ticket.Display());
 
 logger.Info("Program ended");
