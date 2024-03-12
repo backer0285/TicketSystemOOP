@@ -26,7 +26,22 @@ do
         ticket.summary = Console.ReadLine();
         if (ticketFile.isUniqueSummary(ticket.summary))
         {
-            Console.WriteLine("Ticket summary is unique\n");
+            string input;
+            do
+            {
+                Console.WriteLine("Enter a person watching this ticket (or done to quit)");
+                input = Console.ReadLine();
+
+                if (input != "done" && input.Length > 0)
+                {
+                    ticket.watching.Add(input);
+                }
+            } while (input != "done");
+
+            if (ticket.watching.Count == 0)
+            {
+                ticket.watching.Add("(no watchers attached to ticket)");
+            }
         }
     }
     else if (choice == "2")
