@@ -21,7 +21,13 @@ do
 
     if (choice == "1")
     {
-        // TODO: add ticket
+        Ticket ticket = new Ticket();
+        Console.WriteLine("Enter ticket summary");
+        ticket.summary = Console.ReadLine();
+        if (ticketFile.isUniqueSummary(ticket.summary))
+        {
+            Console.WriteLine("Ticket summary is unique\n");
+        }
     }
     else if (choice == "2")
     {
