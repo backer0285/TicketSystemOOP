@@ -7,6 +7,15 @@ string path = Directory.GetCurrentDirectory() + "\\nlog.config";
 var logger = LogManager.LoadConfiguration(path).GetCurrentClassLogger();
 logger.Info("Program started");
 
-Console.WriteLine("Hello World!");
+Ticket ticket = new Ticket
+{
+    ticketID = 1,
+    summary = "This is a bug ticket",
+    status = "Open",
+    priority = "High",
+    submitter = "Drew Kjell",
+    assigned = "John Smith",
+    watching = new List<string> { "Drew Kjell", "John Smith", "Bill Jones" }
+};
 
 logger.Info("Program ended");
