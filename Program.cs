@@ -1,10 +1,10 @@
 ﻿using NLog;
 
-// See https://aka.ms/new-console-template for more information
 string path = Directory.GetCurrentDirectory() + "\\nlog.config";
 
-// create instance of Logger
 var logger = LogManager.LoadConfiguration(path).GetCurrentClassLogger();
+string ticketFilePath = Directory.GetCurrentDirectory() + "\\tickets.csv";
+
 logger.Info("Program started");
 
 Ticket ticket = new Ticket
@@ -18,5 +18,6 @@ Ticket ticket = new Ticket
     watching = new List<string> { "Drew Kjell", "John Smith", "Bill Jones" }
 };
 Console.WriteLine(ticket.Display());
+TicketFile ticketFile = new TicketFile(ticketFilePath);
 
 logger.Info("Program ended");
