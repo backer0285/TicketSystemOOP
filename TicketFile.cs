@@ -4,11 +4,11 @@ public class TicketFile
 {
     public string filePath { get; set; }
     public List<Ticket> Tickets { get; set; }
+    private static NLog.Logger logger = LogManager.LoadConfiguration(Directory.GetCurrentDirectory() + "\\nlog.config").GetCurrentClassLogger();
 
     public TicketFile(string ticketFilePath)
     {
         filePath = ticketFilePath;
-        NLog.Logger logger = LogManager.LoadConfiguration(Directory.GetCurrentDirectory() + "\\nlog.config").GetCurrentClassLogger();
 
         Tickets = new List<Ticket>();
 
@@ -46,5 +46,15 @@ public class TicketFile
         {
             logger.Error(e.Message);
         }
+    }
+
+    public bool isUniqueSummary(string summary)
+    {
+        if (Tickets.ConvertAll(t => t.summary.ToLower()).Contains(summary.ToLower()))
+        {
+            logger.Info("Duplicate ticket summary {Summary}", summary);
+            return false;
+        }
+        return true;
     }
 }
