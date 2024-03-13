@@ -48,11 +48,16 @@ public class TicketFile
         }
     }
 
-    public bool isUniqueSummary(string summary)
+    public bool isValidSummary(string summary)
     {
         if (Tickets.ConvertAll(t => t.summary.ToLower()).Contains(summary.ToLower()))
         {
             logger.Info("Duplicate ticket summary {Summary}", summary);
+            return false;
+        }
+        if (summary == "")
+        {
+            logger.Info("Blank summary submitted.");
             return false;
         }
         return true;

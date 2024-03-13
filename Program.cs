@@ -24,20 +24,34 @@ do
         Ticket ticket = new Ticket();
         Console.WriteLine("Enter ticket summary");
         ticket.summary = Console.ReadLine();
-        if (ticketFile.isUniqueSummary(ticket.summary))
+        if (ticketFile.isValidSummary(ticket.summary))
         {
-            string input;
-            // TODO: handle blank entry
-
             Console.WriteLine("Enter ticket status");
             ticket.status = Console.ReadLine();
+            if (ticket.status == "")
+            {
+                ticket.status = "(no status attached to ticket)";
+            }
             Console.WriteLine("Enter ticket priority");
             ticket.priority = Console.ReadLine();
+            if (ticket.priority == "")
+            {
+                ticket.priority = "(no priority attached to ticket)";
+            }
             Console.WriteLine("Enter ticket submitter");
             ticket.submitter = Console.ReadLine();
+            if (ticket.submitter == "")
+            {
+                ticket.submitter = "(no submitter attached to ticket)";
+            }
             Console.WriteLine("Enter the assigned handler");
             ticket.assigned = Console.ReadLine();
+            if (ticket.assigned == "")
+            {
+                ticket.assigned = "(no one assigned to ticket)";
+            }
 
+            string input;
             do
             {
                 Console.WriteLine("Enter a person watching this ticket (or done to quit)");
@@ -59,7 +73,7 @@ do
     }
     else if (choice == "2")
     {
-        foreach(Ticket t in ticketFile.Tickets)
+        foreach (Ticket t in ticketFile.Tickets)
         {
             Console.WriteLine(t.Display());
         }
