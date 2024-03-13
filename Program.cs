@@ -27,6 +27,17 @@ do
         if (ticketFile.isUniqueSummary(ticket.summary))
         {
             string input;
+            // TODO: handle blank entry
+
+            Console.WriteLine("Enter ticket status");
+            ticket.status = Console.ReadLine();
+            Console.WriteLine("Enter ticket priority");
+            ticket.priority = Console.ReadLine();
+            Console.WriteLine("Enter ticket submitter");
+            ticket.submitter = Console.ReadLine();
+            Console.WriteLine("Enter the assigned handler");
+            ticket.assigned = Console.ReadLine();
+
             do
             {
                 Console.WriteLine("Enter a person watching this ticket (or done to quit)");

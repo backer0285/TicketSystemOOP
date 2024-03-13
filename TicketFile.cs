@@ -64,7 +64,7 @@ public class TicketFile
         {
             ticket.ticketID = Tickets.Max(t => t.ticketID) + 1;
             StreamWriter sw = new StreamWriter(filePath, true);
-            sw.WriteLine($"{ticket.ticketID},{ticket.summary},{string.Join("|",ticket.watching)}");
+            sw.WriteLine($"{ticket.ticketID},{ticket.summary},{ticket.status},{ticket.priority},{ticket.submitter},{ticket.assigned},{string.Join("|",ticket.watching)}");
             sw.Close();
             Tickets.Add(ticket);
             logger.Info("Ticket ID {ID} added", ticket.ticketID);
