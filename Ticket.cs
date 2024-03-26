@@ -36,7 +36,7 @@ public abstract class Ticket
         {
             this._priority = CorrectForCommas(value);
         }
-    }    
+    }
     string _submitter;
     public string submitter
     {
@@ -48,7 +48,7 @@ public abstract class Ticket
         {
             this._submitter = CorrectForCommas(value);
         }
-    } 
+    }
     string _assigned;
     public string assigned
     {
@@ -104,7 +104,8 @@ public class BugDefect : Ticket
     }
 }
 
-public class Enhancement : Ticket{
+public class Enhancement : Ticket
+{
     string _software;
     public string software
     {
@@ -145,5 +146,26 @@ public class Enhancement : Ticket{
     public override string Display()
     {
         return $"ID: {ticketID}\nSummary: {summary}\nStatus: {status}\nPriority: {priority}\nSubmitter: {submitter}\nAssigned: {assigned}\nWatching: {string.Join(", ", watching)}\nSoftware: {software}\nCost: {cost}\nReason: {reason}\nEstimate: {estimate}\n";
+    }
+}
+
+public class Task : Ticket
+{
+    string _projectName;
+    public string projectName
+    {
+        get
+        {
+            return this._projectName;
+        }
+        set
+        {
+            this._projectName = CorrectForCommas(value);
+        }
+    }
+    public DateTime dueDate { get; set; }
+    public override string Display()
+    {
+        return $"ID: {ticketID}\nSummary: {summary}\nStatus: {status}\nPriority: {priority}\nSubmitter: {submitter}\nAssigned: {assigned}\nWatching: {string.Join(", ", watching)}\nProject Name: {projectName}\nDue Date: {dueDate.ToString("MM/dd/yyyy")}\n";
     }
 }

@@ -34,8 +34,22 @@ Enhancement en = new Enhancement
     estimate = "not sure what this field means"
 };
 
+Task t = new Task
+{
+    ticketID = 102,
+    summary = "must construct additional pylons",
+    status = "closed",
+    priority = "urgent",
+    submitter = "Zeratul",
+    assigned = "player 1",
+    watching = {"Zeratul", "Fenix", "Tassadar"},
+    projectName = "Operation Macro",
+    dueDate = new DateTime(2205, 5, 25)
+};
+
 Console.WriteLine(bd.Display());
 Console.WriteLine(en.Display());
+Console.WriteLine(t.Display());
 
 // TicketFile ticketFile = new TicketFile(ticketFilePath);
 
