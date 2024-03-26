@@ -103,3 +103,47 @@ public class BugDefect : Ticket
         return $"ID: {ticketID}\nSummary: {summary}\nStatus: {status}\nPriority: {priority}\nSubmitter: {submitter}\nAssigned: {assigned}\nWatching: {string.Join(", ", watching)}\nSeverity: {severity}\n";
     }
 }
+
+public class Enhancement : Ticket{
+    string _software;
+    public string software
+    {
+        get
+        {
+            return this._software;
+        }
+        set
+        {
+            this._software = CorrectForCommas(value);
+        }
+    }
+    public double cost { get; set; }
+    string _reason;
+    public string reason
+    {
+        get
+        {
+            return this._reason;
+        }
+        set
+        {
+            this._reason = CorrectForCommas(value);
+        }
+    }
+    string _estimate;
+    public string estimate
+    {
+        get
+        {
+            return this._estimate;
+        }
+        set
+        {
+            this._estimate = CorrectForCommas(value);
+        }
+    }
+    public override string Display()
+    {
+        return $"ID: {ticketID}\nSummary: {summary}\nStatus: {status}\nPriority: {priority}\nSubmitter: {submitter}\nAssigned: {assigned}\nWatching: {string.Join(", ", watching)}\nSoftware: {software}\nCost: {cost}\nReason: {reason}\nEstimate: {estimate}\n";
+    }
+}

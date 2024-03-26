@@ -19,7 +19,23 @@ BugDefect bd = new BugDefect
     severity = "low"
 };
 
+Enhancement en = new Enhancement
+{
+    ticketID = 101,
+    summary = "add virtual reality",
+    status = "open",
+    priority = "low",
+    submitter = "Zuck",
+    assigned = "code jockey",
+    watching = {"Zuck", "world"},
+    software = "VR",
+    cost = 100000000.01,
+    reason = "Zuck's ego",
+    estimate = "not sure what this field means"
+};
+
 Console.WriteLine(bd.Display());
+Console.WriteLine(en.Display());
 
 // TicketFile ticketFile = new TicketFile(ticketFilePath);
 
