@@ -1,4 +1,4 @@
-public class Ticket
+public abstract class Ticket
 {
     public int ticketID { get; set; }
     string _summary;
@@ -68,7 +68,7 @@ public class Ticket
         watching = new List<string>();
     }
 
-    public string Display()
+    public virtual string Display()
     {
         return $"ID: {ticketID}\nSummary: {summary}\nStatus: {status}\nPriority: {priority}\nSubmitter: {submitter}\nAssigned: {assigned}\nWatching: {string.Join(", ", watching)}\n";
     }
@@ -81,5 +81,25 @@ public class Ticket
             stringToCheck = "\"" + stringToCheck + "\"";
         }
         return stringToCheck;
+    }
+}
+
+public class BugDefect : Ticket
+{
+    string _severity;
+    public string severity
+    {
+        get
+        {
+            return this._severity;
+        }
+        set
+        {
+            this._severity = CorrectForCommas(value);
+        }
+    }
+    public override string Display()
+    {
+        return $"ID: {ticketID}\nSummary: {summary}\nStatus: {status}\nPriority: {priority}\nSubmitter: {submitter}\nAssigned: {assigned}\nWatching: {string.Join(", ", watching)}\nSeverity: {severity}\n";
     }
 }
