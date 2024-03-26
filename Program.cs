@@ -1,4 +1,6 @@
-﻿using NLog;
+﻿// TODO - TicketFile errors don't end program
+
+using NLog;
 
 string path = Directory.GetCurrentDirectory() + "\\nlog.config";
 
@@ -7,64 +9,64 @@ string ticketFilePath = Directory.GetCurrentDirectory() + "\\tickets.csv";
 
 logger.Info("Program started");
 
-BugDefect bd = new BugDefect
-{
-    ticketID = 100,
-    summary = "index out of bounds error",
-    status = "open",
-    priority = "medium",
-    submitter = "me",
-    assigned = "you",
-    watching = {"me", "them", "us"},
-    severity = "low"
-};
-
-Enhancement en = new Enhancement
-{
-    ticketID = 101,
-    summary = "add virtual reality",
-    status = "open",
-    priority = "low",
-    submitter = "Zuck",
-    assigned = "code jockey",
-    watching = {"Zuck", "world"},
-    software = "VR",
-    cost = 100000000.01,
-    reason = "Zuck's ego",
-    estimate = "not sure what this field means"
-};
-
-Task t = new Task
-{
-    ticketID = 102,
-    summary = "must construct additional pylons",
-    status = "closed",
-    priority = "urgent",
-    submitter = "Zeratul",
-    assigned = "player 1",
-    watching = {"Zeratul", "Fenix", "Tassadar"},
-    projectName = "Operation Macro",
-    dueDate = new DateTime(2205, 5, 25)
-};
-
-Console.WriteLine(bd.Display());
-Console.WriteLine(en.Display());
-Console.WriteLine(t.Display());
-
-// TicketFile ticketFile = new TicketFile(ticketFilePath);
-
-// string choice = "";
-// do
+// BugDefect bd = new BugDefect
 // {
-//     Console.WriteLine("1) Add Ticket");
-//     Console.WriteLine("2) Display Tickets");
-//     Console.WriteLine("Enter to quit");
+//     ticketID = 100,
+//     summary = "index out of bounds error",
+//     status = "open",
+//     priority = "medium",
+//     submitter = "me",
+//     assigned = "you",
+//     watching = {"me", "them", "us"},
+//     severity = "low"
+// };
 
-//     choice = Console.ReadLine();
-//     logger.Info("User choice: {Choice}", choice);
+// Enhancement en = new Enhancement
+// {
+//     ticketID = 101,
+//     summary = "add virtual reality",
+//     status = "open",
+//     priority = "low",
+//     submitter = "Zuck",
+//     assigned = "code jockey",
+//     watching = {"Zuck", "world"},
+//     software = "VR",
+//     cost = 100000000.01,
+//     reason = "Zuck's ego",
+//     estimate = "not sure what this field means"
+// };
 
-//     if (choice == "1")
-//     {
+// Task t = new Task
+// {
+//     ticketID = 102,
+//     summary = "must construct additional pylons",
+//     status = "closed",
+//     priority = "urgent",
+//     submitter = "Zeratul",
+//     assigned = "player 1",
+//     watching = {"Zeratul", "Fenix", "Tassadar"},
+//     projectName = "Operation Macro",
+//     dueDate = new DateOnly(2205, 5, 25)
+// };
+
+// Console.WriteLine(bd.Display());
+// Console.WriteLine(en.Display());
+// Console.WriteLine(t.Display());
+
+TicketFile ticketFile = new TicketFile(ticketFilePath);
+
+string choice = "";
+do
+{
+    Console.WriteLine("1) Add Ticket");
+    Console.WriteLine("2) Display Tickets");
+    Console.WriteLine("Enter to quit");
+
+    choice = Console.ReadLine();
+    logger.Info("User choice: {Choice}", choice);
+
+    if (choice == "1")
+    {
 //         Ticket ticket = new Ticket();
 //         Console.WriteLine("Enter ticket summary");
 //         ticket.summary = Console.ReadLine();
@@ -114,14 +116,14 @@ Console.WriteLine(t.Display());
 
 //             ticketFile.AddTicket(ticket);
 //         }
-//     }
-//     else if (choice == "2")
-//     {
-//         foreach (Ticket t in ticketFile.Tickets)
-//         {
-//             Console.WriteLine(t.Display());
-//         }
-//     }
-// } while (choice == "1" || choice == "2");
+    }
+    else if (choice == "2")
+    {
+        foreach (Ticket t in ticketFile.Tickets)
+        {
+            Console.WriteLine(t.Display());
+        }
+    }
+} while (choice == "1" || choice == "2");
 
 logger.Info("Program ended");
