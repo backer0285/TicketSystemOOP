@@ -1,6 +1,4 @@
-﻿// TODO - TicketFile errors don't end program
-
-using NLog;
+﻿using NLog;
 
 string path = Directory.GetCurrentDirectory() + "\\nlog.config";
 
@@ -23,7 +21,6 @@ do
 
     if (choice == "1")
     {
-
         Console.WriteLine("1) Bug/Defect Ticket");
         Console.WriteLine("2) Enhancement Ticket");
         Console.WriteLine("3) Task Ticket");
@@ -81,7 +78,7 @@ do
 
             Console.WriteLine("Enter project name");
             ticket.projectName = Console.ReadLine();
-            Console.WriteLine("Enter due date");
+            Console.WriteLine("Enter due date (mm/dd/yyyy format)");
             string input = Console.ReadLine();
             if (DateOnly.TryParse(input, out DateOnly dueDate))
             {
@@ -107,6 +104,7 @@ do
 
 logger.Info("Program ended");
 
+// info all tickets have in common
 Ticket AddPreliminaryTicket(Ticket ticket)
 {
     Console.WriteLine("Enter ticket summary");

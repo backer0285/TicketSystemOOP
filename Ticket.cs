@@ -131,21 +131,12 @@ public class Enhancement : Ticket
             this._reason = CorrectForCommas(value);
         }
     }
-    string _estimate;
-    public string estimate
-    {
-        get
-        {
-            return this._estimate;
-        }
-        set
-        {
-            this._estimate = CorrectForCommas(value);
-        }
-    }
+
+    public TimeSpan estimate { get; set;}
+
     public override string Display()
     {
-        return $"ID: {ticketID}\nSummary: {summary}\nStatus: {status}\nPriority: {priority}\nSubmitter: {submitter}\nAssigned: {assigned}\nWatching: {string.Join(", ", watching)}\nSoftware: {software}\nCost: {cost}\nReason: {reason}\nEstimate: {estimate}\n";
+        return $"ID: {ticketID}\nSummary: {summary}\nStatus: {status}\nPriority: {priority}\nSubmitter: {submitter}\nAssigned: {assigned}\nWatching: {string.Join(", ", watching)}\nSoftware: {software}\nCost: {cost.ToString("C")}\nReason: {reason}\nEstimate: {estimate.Hours} hours, {estimate.Minutes} minutes\n";
     }
 }
 
@@ -163,7 +154,7 @@ public class Task : Ticket
             this._projectName = CorrectForCommas(value);
         }
     }
-    public DateTime dueDate { get; set; }
+    public DateOnly dueDate { get; set; }
     public override string Display()
     {
         return $"ID: {ticketID}\nSummary: {summary}\nStatus: {status}\nPriority: {priority}\nSubmitter: {submitter}\nAssigned: {assigned}\nWatching: {string.Join(", ", watching)}\nProject Name: {projectName}\nDue Date: {dueDate.ToString("MM/dd/yyyy")}\n";
