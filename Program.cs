@@ -1,4 +1,7 @@
-﻿using NLog;
+﻿// have it display a default value for empty strings (ie NA or Unassigned)
+// negative cost
+
+using NLog;
 
 string path = Directory.GetCurrentDirectory() + "\\nlog.config";
 
@@ -14,6 +17,7 @@ do
 {
     Console.WriteLine("1) Add Ticket");
     Console.WriteLine("2) Display Tickets");
+    Console.WriteLine("3) Search Tickets");
     Console.WriteLine("Enter to quit");
 
     choice = Console.ReadLine();
@@ -100,7 +104,63 @@ do
             Console.WriteLine(t.Display());
         }
     }
-} while (choice == "1" || choice == "2");
+    else if (choice == "3")
+    {
+        Console.WriteLine("1) Search by Status");
+        Console.WriteLine("2) Search by Priority");
+        Console.WriteLine("3) Search by Submitter");
+        string searchMenuChoice = Console.ReadLine();
+        string searchParameter = "";
+        if (searchMenuChoice == "1")
+        {
+            while (searchParameter == "")
+            {
+                Console.WriteLine("Enter status to search");
+                searchParameter = Console.ReadLine();
+            }
+            var searchResults = ticketFile.Tickets.Where(t => t.status.Contains(searchParameter, StringComparison.OrdinalIgnoreCase)).Select(t => t);
+            Console.WriteLine();
+            Console.WriteLine($"There are {searchResults.Count()} ticket(s) with \"{searchParameter}\" in the status:");
+            Console.WriteLine();
+            foreach (Ticket t in searchResults)
+            {
+                Console.WriteLine(t.Display());
+            }
+        }
+        else if (searchMenuChoice == "2")
+        {
+            while (searchParameter == "")
+            {
+                Console.WriteLine("Enter priority to search");
+                searchParameter = Console.ReadLine();
+            }
+            var searchResults = ticketFile.Tickets.Where(t => t.priority.Contains(searchParameter, StringComparison.OrdinalIgnoreCase)).Select(t => t);
+            Console.WriteLine();
+            Console.WriteLine($"There are {searchResults.Count()} ticket(s) with \"{searchParameter}\" in the priority:");
+            Console.WriteLine();
+            foreach (Ticket t in searchResults)
+            {
+                Console.WriteLine(t.Display());
+            }
+        }
+        else if (searchMenuChoice == "3")
+        {
+            while (searchParameter == "")
+            {
+                Console.WriteLine("Enter submitter to search");
+                searchParameter = Console.ReadLine();
+            }
+            var searchResults = ticketFile.Tickets.Where(t => t.submitter.Contains(searchParameter, StringComparison.OrdinalIgnoreCase)).Select(t => t);
+            Console.WriteLine();
+            Console.WriteLine($"There are {searchResults.Count()} ticket(s) with \"{searchParameter}\" in the submitter:");
+            Console.WriteLine();
+            foreach (Ticket t in searchResults)
+            {
+                Console.WriteLine(t.Display());
+            }
+        }
+    }
+} while (choice == "1" || choice == "2" || choice == "3");
 
 logger.Info("Program ended");
 

@@ -16,8 +16,8 @@ public class TicketFile
         try
         {
             StreamReader sr = new StreamReader(filePath);
-            // skip first line due to column headers
-            sr.ReadLine();
+            // skip first line due to column headers, toggle on if needed
+            // sr.ReadLine();
             int lineNumber = 1;
 
             while (!sr.EndOfStream)
